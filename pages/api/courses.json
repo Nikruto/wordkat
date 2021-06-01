@@ -1,0 +1,88 @@
+{
+  "courses": [
+    {
+      "title": "Basics 1",
+      "slug": "Basics-1",
+      "content": [
+        {
+          "question": "Ben",
+          "choices": ["I", "You", "He", "She", "It"],
+          "correctAnswer": 0,
+          "id": "Basics-1-1"
+        },
+        {
+          "question": "Sen",
+          "choices": ["I am", "You", "He", "She", "It"],
+          "correctAnswer": 1,
+          "id": "Basics-1-2"
+        },
+        {
+          "question": "Adam",
+          "choices": ["Boy", "Woman", "Man", "Girl", "Son"],
+          "correctAnswer": 2,
+          "id": "Basics-1-3"
+        },
+        {
+          "question": "Kadın",
+          "choices": ["Boy", "Woman", "Man", "Girl", "Son"],
+          "correctAnswer": 1,
+          "id": "Basics-1-4"
+        }
+      ]
+    },
+    {
+      "title": "Basics 2",
+      "slug": "Basics-2",
+      "content": [
+        {
+          "question": "Ben",
+          "choices": ["I", "You", "He", "She", "It"],
+          "correctAnswer": 0,
+          "id": "Basics-2-1"
+        },
+        {
+          "question": "Sen",
+          "choices": ["I am", "You", "He", "She", "It"],
+          "correctAnswer": 1,
+          "id": "Basics-2-2"
+        },
+        {
+          "question": "Adam",
+          "choices": ["Boy", "Woman", "Man", "Girl", "Son"],
+          "correctAnswer": 2,
+          "id": "Basics-2-3"
+        },
+        {
+          "question": "Kadın",
+          "choices": ["Boy", "Woman", "Man", "Girl", "Son"],
+          "correctAnswer": 1,
+          "id": "Basics-2-4"
+        }
+      ]
+    },
+    {
+      "title": "Fruits",
+      "slug": "Fruits",
+      "content": [
+        {
+          "question": "Apple",
+          "choices": ["Armut", "Ananas", "Kiraz", "Elma", "Muz"],
+          "correctAnswer": 3,
+          "id": "Foods-1"
+        },
+        {
+          "question": "Banana",
+          "choices": ["Muz", "Kiraz", "Böğürtlen", "Ananas", "Armut"],
+          "correctAnswer": 0,
+          "id": "Foods-2"
+        },
+        {
+          "question": "Strawberry",
+          "choices": ["Kayısı", "Nane", "Ananas", "Armut", "Çilek"],
+          "correctAnswer": 4,
+          "id": "Foods-3"
+        }
+      ]
+    }
+  ]
+}
