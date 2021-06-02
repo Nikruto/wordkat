@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowSmRightIcon } from "@heroicons/react/solid";
+import { ArrowSmRightIcon, CheckIcon, XIcon } from "@heroicons/react/solid";
 
 const QuizPiece = ({ title, onClick }) => {
   return (
@@ -15,13 +15,27 @@ const QuizPiece = ({ title, onClick }) => {
   );
 };
 
-export default () => {
-  const choices = ["Ekmek", "Bisiklet", "Barınak", "Taşıt"];
-  const [selectedItem, setSelectedItem] = useState(null);
+const choices = ["Ekmek", "Bisiklet", "Barınak", "Taşıt"];
+const correctChoice = 1;
 
-  const onClickChoice = (piece) => {
-    setSelectedItem(piece == selectedItem ? null : piece);
+export default () => {
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [quizState, setQuizState] = useState("answering");
+
+  const onClickChoice = (clickedPieceIndex) => {
+    if (quizState == "wrong") setQuizState("answering");
+
+    if (quizState == "correct") return;
+
+    setSelectedIndex(
+      clickedPieceIndex == selectedIndex ? null : clickedPieceIndex
+    );
   };
+
+  const onClickCheck = () => {
+    setQuizState(selectedIndex == correctChoice ? "correct" : "wrong");
+  };
+
   return (
     <div className="flex flex-col">
       <h1 className="text-3xl font-semibold">
@@ -29,32 +43,47 @@ export default () => {
       </h1>
 
       <div className="relative mt-4 w-full border-b-4 h-12 border-black">
-        {selectedItem && (
+        {selectedIndex != null && (
           <QuizPiece
-            onClick={() => onClickChoice(selectedItem)}
-            key={selectedItem}
-            title={selectedItem}
+            onClick={() => onClickChoice(selectedIndex)}
+            key={selectedIndex}
+            title={choices[selectedIndex]}
           />
         )}
         <div
-          className={`absolute right-0 bottom-1 h-8 w-10 rounded bg-black transition flex justify-center items-center ${
-            selectedItem == null ? "opacity-25" : "opacity-100 cursor-pointer"
+          onClick={onClickCheck}
+          className={`absolute right-0 bottom-1 h-8 w-10 rounded ${
+            quizState == "answering"
+              ? "bg-black"
+              : quizState == "correct"
+              ? "bg-green-500"
+              : "bg-red-500"
+          } transition flex justify-center items-center ${
+            selectedIndex == null ? "opacity-25" : "opacity-100 cursor-pointer"
           }`}
         >
-          <ArrowSmRightIcon className="w-6 h-6 text-white" />
+          {quizState == "answering" ? (
+            <ArrowSmRightIcon className="w-6 h-6 text-white" />
+          ) : quizState == "correct" ? (
+            <CheckIcon className="w-6 h-6 text-white" />
+          ) : (
+            <XIcon className="w-6 h-6 text-white" />
+          )}
         </div>
       </div>
 
       <div className="mt-8 flex flex-wrap gap-2">
-        {choices
-          .filter((choice) => choice != selectedItem)
-          .map((piece) => (
+        {choices.map((piece, i) => {
+          if (i == selectedIndex) return null;
+
+          return (
             <QuizPiece
-              onClick={() => onClickChoice(piece)}
+              onClick={() => onClickChoice(i)}
               key={piece}
               title={piece}
             />
-          ))}
+          );
+        })}
       </div>
     </div>
   );
