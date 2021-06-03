@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import useWindowSize from "react-use/lib/useWindowSize";
+import Confetti from "react-confetti";
 
 const QuizPiece = ({ title, onClick, finished = false }) => {
   return (
@@ -24,6 +26,7 @@ export default ({
 }) => {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [quizState, setQuizState] = useState("answering");
+  const { windowWidth, windowHeight } = useWindowSize();
 
   const onClickChoice = (clickedPieceIndex) => {
     if (quizState == "wrong") setQuizState("answering");
@@ -103,6 +106,9 @@ export default ({
             : "Wrong Answer!"}
         </motion.button>
       </div>
+      {quizState == "correct" && (
+        <Confetti width={windowWidth} height={windowHeight} />
+      )}
     </div>
   );
 };
