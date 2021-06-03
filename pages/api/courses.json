@@ -48,7 +48,7 @@
         },
         {
           "question": "Cat",
-          "choices": ["Ayı", "Kedi", "Asla1", "Eşek", "Köpek"],
+          "choices": ["Ayı", "Kedi", "Aslan", "Eşek", "Köpek"],
           "correctAnswer": 1,
           "id": "Animals-3"
         }
