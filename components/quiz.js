@@ -44,7 +44,9 @@ export default ({
   return (
     <div className="w-full h-full">
       <div className="flex flex-col items-center">
-        <span className="mr-2 text-4xl font-bold">{word}</span>
+        <motion.span layoutId="quiz_word" className="mr-2 text-4xl font-bold">
+          {word}
+        </motion.span>
         <span className="text-3xl font-normal">means</span>
       </div>
       <div className="max-w-full w-96 h-14 mt-32 border-b-4 border-black mx-auto">
