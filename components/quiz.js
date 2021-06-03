@@ -58,7 +58,7 @@ export default ({
             onClick={() => onClickChoice(selectedIndex)}
             key={selectedIndex}
             title={choices[selectedIndex]}
-            finished={quizState != "answering"}
+            finished={quizState == "correct"}
           />
         )}
       </div>
@@ -71,7 +71,7 @@ export default ({
               onClick={() => onClickChoice(i)}
               key={piece}
               title={piece}
-              finished={quizState != "answering"}
+              finished={quizState == "correct"}
             />
           );
         })}
