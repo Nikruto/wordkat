@@ -31,32 +31,26 @@
       ]
     },
     {
-      "title": "Basics 2",
-      "slug": "Basics-2",
+      "title": "Animals",
+      "slug": "Animals",
       "content": [
         {
-          "question": "Ben",
-          "choices": ["I", "You", "He", "She", "It"],
+          "question": "Bear",
+          "choices": ["Ayı", "Kaplan", "Yılan", "Eşek", "Köpek"],
           "correctAnswer": 0,
-          "id": "Basics-2-1"
+          "id": "Animals-1"
         },
         {
-          "question": "Sen",
-          "choices": ["I am", "You", "He", "She", "It"],
-          "correctAnswer": 1,
-          "id": "Basics-2-2"
-        },
-        {
-          "question": "Adam",
-          "choices": ["Boy", "Woman", "Man", "Girl", "Son"],
+          "question": "Snake",
+          "choices": ["Ayı", "Kaplan", "Yılan", "Eşek", "Köpek"],
           "correctAnswer": 2,
-          "id": "Basics-2-3"
+          "id": "Animals-2"
         },
         {
-          "question": "Kadın",
-          "choices": ["Boy", "Woman", "Man", "Girl", "Son"],
+          "question": "Cat",
+          "choices": ["Ayı", "Kedi", "Asla1", "Eşek", "Köpek"],
           "correctAnswer": 1,
-          "id": "Basics-2-4"
+          "id": "Animals-3"
         }
       ]
     },
