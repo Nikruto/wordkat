@@ -1,5 +1,5 @@
 import axios from "axios";
-import absoluteUrl from 'next-absolute-url';
+import absoluteUrl from "next-absolute-url";
 import CourseCard from "../../components/courseCard";
 
 export default ({ courses }) => {
@@ -14,10 +14,17 @@ export default ({ courses }) => {
   );
 };
 
-export async function getServerSideProps(content) {
-  const { protocol, host } = absoluteUrl(content.req);
-  const baseUrl = `${protocol}//${host}`;
-
-  const res = await axios.get(`${baseUrl}/api/course/all`);
+export async function getStaticProps() {
+  const res = await axios.get(
+    `${process.env.VERCEL_URL || "http://localhost:3000"}/api/course/all`
+  );
   return { props: { courses: res.data.courses } };
 }
+
+// export async function getServerSideProps(content) {
+//   const { protocol, host } = absoluteUrl(content.req);
+//   const baseUrl = `${protocol}//${host}`;
+
+//   const res = await axios.get(`${baseUrl}/api/course/all`);
+//   return { props: { courses: res.data.courses } };
+// }

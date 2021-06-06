@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import axios from "axios";
-import absoluteUrl from 'next-absolute-url';
+import absoluteUrl from "next-absolute-url";
 import { motion } from "framer-motion";
 import Quiz from "../../components/quiz.js";
 
@@ -36,20 +36,46 @@ export default ({ slug, course }) => {
   );
 };
 
-export async function getServerSideProps(content) {
-  const { slug } = content.query;
-  const { protocol, host } = absoluteUrl(content.req);
-  const baseUrl = `${protocol}//${host}`;
+export async function getStaticPaths() {
+  const res = await axios.get(
+    `${process.env.VERCEL_URL || "http://localhost:3000"}/api/course/all`
+  );
 
-  try {
-    const res = await axios.get(`${baseUrl}/api/course/${slug}`);
-    return { props: { slug, course: res.data } };
-  } catch {
+  const paths = res.data.courses.map((course) => {
     return {
-      redirect: {
-        permanent: false,
-        destination: "/app",
+      params: {
+        slug: course.slug,
       },
     };
-  }
+  });
+
+  return { paths, fallback: "blocking" };
 }
+
+export async function getStaticProps(context) {
+  const { slug } = context.params;
+
+  const res = await axios.get(
+    `${process.env.VERCEL_URL || "http://localhost:3000"}/api/course/${slug}`
+  );
+
+  return { props: { slug, course: res.data } };
+}
+
+// export async function getServerSideProps(content) {
+//   const { slug } = content.query;
+//   const { protocol, host } = absoluteUrl(content.req);
+//   const baseUrl = `${protocol}//${host}`;
+
+//   try {
+//     const res = await axios.get(`${baseUrl}/api/course/${slug}`);
+//     return { props: { slug, course: res.data } };
+//   } catch {
+//     return {
+//       redirect: {
+//         permanent: false,
+//         destination: "/app",
+//       },
+//     };
+//   }
+// }
