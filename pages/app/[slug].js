@@ -38,7 +38,9 @@ export default ({ slug, course }) => {
 
 export async function getStaticPaths() {
   const res = await axios.get(
-    `${process.env.VERCEL_URL || "http://localhost:3000"}/api/course/all`
+    `${
+      process.env.NEXT_PUBLIC_VERCEL_URL || "http://localhost:3000"
+    }/api/course/all`
   );
 
   const paths = res.data.courses.map((course) => {
@@ -56,7 +58,9 @@ export async function getStaticProps(context) {
   const { slug } = context.params;
 
   const res = await axios.get(
-    `${process.env.VERCEL_URL || "http://localhost:3000"}/api/course/${slug}`
+    `${
+      process.env.NEXT_PUBLIC_VERCEL_URL || "http://localhost:3000"
+    }/api/course/${slug}`
   );
 
   return { props: { slug, course: res.data } };

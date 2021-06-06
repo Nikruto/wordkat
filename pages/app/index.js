@@ -16,7 +16,9 @@ export default ({ courses }) => {
 
 export async function getStaticProps() {
   const res = await axios.get(
-    `${process.env.VERCEL_URL || "http://localhost:3000"}/api/course/all`
+    `${
+      process.env.NEXT_PUBLIC_VERCEL_URL || "http://localhost:3000"
+    }/api/course/all`
   );
   return { props: { courses: res.data.courses } };
 }
