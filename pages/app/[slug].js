@@ -5,6 +5,7 @@ import axios from "axios";
 import absoluteUrl from "next-absolute-url";
 import { motion } from "framer-motion";
 import Quiz from "../../components/quiz.js";
+import Data from "../api/courses.json";
 
 export default ({ slug, course }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -37,13 +38,7 @@ export default ({ slug, course }) => {
 };
 
 export async function getStaticPaths() {
-  const res = await axios.get(
-    `${
-      process.env.NEXT_PUBLIC_VERCEL_URL || "http://localhost:3000"
-    }/api/course/all`
-  );
-
-  const paths = res.data.courses.map((course) => {
+  const paths = Data.courses.map((course) => {
     return {
       params: {
         slug: course.slug,
@@ -57,13 +52,9 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const { slug } = context.params;
 
-  const res = await axios.get(
-    `${
-      process.env.NEXT_PUBLIC_VERCEL_URL || "http://localhost:3000"
-    }/api/course/${slug}`
-  );
-
-  return { props: { slug, course: res.data } };
+  return {
+    props: { slug, course: Data.courses.find((course) => course.slug == slug) },
+  };
 }
 
 // export async function getServerSideProps(content) {

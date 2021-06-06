@@ -1,6 +1,7 @@
 import axios from "axios";
 import absoluteUrl from "next-absolute-url";
 import CourseCard from "../../components/courseCard";
+import Data from "../api/courses.json";
 
 export default ({ courses }) => {
   return (
@@ -15,12 +16,7 @@ export default ({ courses }) => {
 };
 
 export async function getStaticProps() {
-  const res = await axios.get(
-    `${
-      process.env.NEXT_PUBLIC_VERCEL_URL || "http://localhost:3000"
-    }/api/course/all`
-  );
-  return { props: { courses: res.data.courses } };
+  return { props: { courses: Data.courses } };
 }
 
 // export async function getServerSideProps(content) {
