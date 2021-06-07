@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 
 export default function QuizSummary({
+  courseTitle,
   answerCount,
   correctAnswerCount,
   passedAnswerCount,
@@ -12,7 +13,7 @@ export default function QuizSummary({
       <h1 className="text-center">
         <motion.span className="text-4xl font-bold text-center">
           You have completed <br />
-          Basics 1 Course!
+          {courseTitle} Course!
         </motion.span>
       </h1>
       <h1 className="text-center text-2xl mt-6">

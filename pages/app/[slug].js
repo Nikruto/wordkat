@@ -47,6 +47,7 @@ export default function AppQuiz({ slug, course }) {
           />
         ) : (
           <QuizSummary
+            courseTitle={course.title}
             answerCount={course.content.length}
             correctAnswerCount={answerStats.correct}
             passedAnswerCount={answerStats.pass}
