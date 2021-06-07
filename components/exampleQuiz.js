@@ -18,7 +18,7 @@ const QuizPiece = ({ title, onClick }) => {
 const choices = ["Ekmek", "Bisiklet", "Barınak", "Taşıt"];
 const correctChoice = 1;
 
-export default () => {
+export default function ExampleQuiz() {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [quizState, setQuizState] = useState("answering");
 
@@ -87,4 +87,4 @@ export default () => {
       </div>
     </div>
   );
-};
+}

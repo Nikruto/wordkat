@@ -3,19 +3,31 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import axios from "axios";
 import absoluteUrl from "next-absolute-url";
-import { motion } from "framer-motion";
 import Quiz from "../../components/quiz.js";
+import QuizSummary from "../../components/quizSummary.js";
 import Data from "../api/courses.json";
 
-export default ({ slug, course }) => {
+export default function AppQuiz({ slug, course }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [hasFinished, setHasFinished] = useState(false);
+  const [answerStats, setAnswerStats] = useState({
+    correct: 0,
+    pass: 0,
+    wrong: 0,
+  });
   const router = useRouter();
 
-  const onClickContinue = () => {
+  const onClickContinue = (answer) => {
+    setAnswerStats({ ...answerStats, [answer]: answerStats[answer] + 1 });
+
     if (currentQuestion == course.content.length - 1)
-      return router.push("/app");
+      return setHasFinished(true);
 
     setCurrentQuestion(currentQuestion + 1);
+  };
+
+  const onClickOk = () => {
+    router.push("/app");
   };
 
   return (
@@ -24,18 +36,28 @@ export default ({ slug, course }) => {
         <title>{course.title}</title>
       </Head>
       <div className="min-h-screen pt-24 w-full max-w-5xl mx-auto">
-        <Quiz
-          key={currentQuestion}
-          onClickContinue={onClickContinue}
-          onClickPass={onClickContinue}
-          word={course.content[currentQuestion].question}
-          choices={course.content[currentQuestion].choices}
-          correctChoice={course.content[currentQuestion].correctAnswer}
-        />
+        {!hasFinished ? (
+          <Quiz
+            key={currentQuestion}
+            onClickContinue={onClickContinue}
+            onClickPass={() => onClickContinue("pass")}
+            word={course.content[currentQuestion].question}
+            choices={course.content[currentQuestion].choices}
+            correctChoice={course.content[currentQuestion].correctAnswer}
+          />
+        ) : (
+          <QuizSummary
+            answerCount={course.content.length}
+            correctAnswerCount={answerStats.correct}
+            passedAnswerCount={answerStats.pass}
+            wrongAnswerCount={answerStats.wrong}
+            onClickOk={onClickOk}
+          />
+        )}
       </div>
     </div>
   );
-};
+}
 
 export async function getStaticPaths() {
   const paths = Data.courses.map((course) => {

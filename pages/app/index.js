@@ -3,7 +3,7 @@ import absoluteUrl from "next-absolute-url";
 import CourseCard from "../../components/courseCard";
 import Data from "../api/courses.json";
 
-export default ({ courses }) => {
+export default function App({ courses }) {
   return (
     <div>
       <div className="w-full max-w-xl mx-auto flex flex-col items-center pt-8 space-y-8">
@@ -13,7 +13,7 @@ export default ({ courses }) => {
       </div>
     </div>
   );
-};
+}
 
 export async function getStaticProps() {
   return { props: { courses: Data.courses } };

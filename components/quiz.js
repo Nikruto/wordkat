@@ -17,21 +17,19 @@ const QuizPiece = ({ title, onClick, finished = false }) => {
   );
 };
 
-export default ({
+export default function Quiz({
   word,
   choices,
   correctChoice,
   onClickContinue,
   onClickPass,
-}) => {
+}) {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [quizState, setQuizState] = useState("answering");
   const { windowWidth, windowHeight } = useWindowSize();
 
   const onClickChoice = (clickedPieceIndex) => {
-    if (quizState == "wrong") setQuizState("answering");
-
-    if (quizState == "correct") return;
+    if (quizState != "answering") return;
 
     setSelectedIndex(
       clickedPieceIndex == selectedIndex ? null : clickedPieceIndex
@@ -39,7 +37,7 @@ export default ({
   };
 
   const onClickCheck = () => {
-    if (quizState == "correct") onClickContinue();
+    if (quizState != "answering") onClickContinue(quizState);
 
     setQuizState(selectedIndex == correctChoice ? "correct" : "wrong");
   };
@@ -58,7 +56,7 @@ export default ({
             onClick={() => onClickChoice(selectedIndex)}
             key={selectedIndex}
             title={choices[selectedIndex]}
-            finished={quizState == "correct"}
+            finished={quizState != "answering"}
           />
         )}
       </div>
@@ -71,7 +69,7 @@ export default ({
               onClick={() => onClickChoice(i)}
               key={piece}
               title={piece}
-              finished={quizState == "correct"}
+              finished={quizState != "answering"}
             />
           );
         })}
@@ -81,7 +79,7 @@ export default ({
         <button
           onClick={onClickPass}
           className={`text-white bg-black border border-black hover:text-black hover:bg-transparent transition px-4 py-2 font-medium text-sm rounded cursor-pointer select-none ${
-            quizState == "correct" ? "invisible" : ""
+            quizState != "answering" ? "invisible" : ""
           }`}
         >
           Pass
@@ -111,4 +109,4 @@ export default ({
       )}
     </div>
   );
-};
+}

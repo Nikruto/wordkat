@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { PlayIcon } from "@heroicons/react/solid";
 import { motion } from "framer-motion";
-export default ({ item }) => {
+
+export default function CourseCard({ item }) {
   return (
     <div className="w-full flex bg-white px-6 py-6 font-poppins text-black rounded-md shadow-md">
       <div className="w-16 h-16 bg-gradient-to-b from-[#B5FF92] to-[#A0FFB5]"></div>
@@ -25,4 +26,4 @@ export default ({ item }) => {
       </div>
     </div>
   );
-};
+}
