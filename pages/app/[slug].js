@@ -35,7 +35,7 @@ export default function AppQuiz({ slug, course }) {
       <Head>
         <title>{course.title}</title>
       </Head>
-      <div className="min-h-screen pt-24 w-full max-w-5xl mx-auto">
+      <div className="min-h-screen pt-8 md:pt-24 w-full max-w-5xl mx-auto">
         {!hasFinished ? (
           <Quiz
             key={currentQuestion}
