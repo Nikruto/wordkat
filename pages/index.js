@@ -21,13 +21,13 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <div className="w-full max-w-7xl mx-auto grid grid-cols-7 grid-flow-row px-6">
-        <h1 className="font-semibold text-3xl lg:text-6xl  col-span-4 leading-tight flex items-center">
+      <div className="w-full max-w-7xl mx-auto md:grid md:grid-cols-7 md:grid-flow-row flex flex-col items-center pt-40 md:pt-0 px-6">
+        <h1 className="font-semibold text-5xl md:text-6xl col-span-4 leading-tight text-center md:text-left">
           Easiest word and language learning app
         </h1>
         <div
           style={{ height: "calc(100vh - 80px" }}
-          className="rounded-lg col-start-6 col-span-2 max-h-[600px] flex-shrink-0 mt-8 bg-gradient-to-b from-[#B5FF92] to-[#A0FFB5] pt-16 lg:pt-36 px-8 flex flex-col"
+          className="rounded-lg col-start-6 col-span-2 max-h-[600px] max-w-xs w-full md:w-auto flex-shrink-0 mt-16 md:mt-8 bg-gradient-to-b from-[#B5FF92] to-[#A0FFB5] pt-16 lg:pt-36 px-8 flex flex-col"
         >
           <ExampleQuiz />
         </div>
