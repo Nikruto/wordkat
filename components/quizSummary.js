@@ -20,7 +20,7 @@ export default function QuizSummary({
         Out of <span className="font-bold">{answerCount}</span> words
       </h1>
 
-      <div className="flex justify-center mt-10 space-x-24">
+      <div className="flex flex-col md:flex-row items-center md:items-start justify-center mt-10 space-y-12 md:space-y-0 md:space-x-24">
         <div className="flex flex-col items-center">
           <h3 className="text-center text-xl">
             You got <span className="font-bold">{correctAnswerCount}</span>{" "}
@@ -70,7 +70,7 @@ export default function QuizSummary({
           </svg>
         </div>
       </div>
-      <div className="flex justify-center mt-20">
+      <div className="flex justify-center mt-12 md:mt-20">
         <button
           onClick={onClickOk}
           className="t-20 text-white bg-black border border-black hover:text-black hover:bg-transparent transition px-4 py-2 font-medium text-sm rounded cursor-pointer select-none"
