@@ -27,7 +27,7 @@ export default function Home() {
         </h1>
         <div
           style={{ height: "calc(100vh - 80px" }}
-          className="rounded-lg col-start-6 col-span-2 max-h-[600px] max-w-xs w-full md:w-auto flex-shrink-0 mt-16 md:mt-8 bg-gradient-to-b from-[#B5FF92] to-[#A0FFB5] pt-16 lg:pt-36 px-8 flex flex-col"
+          className="rounded-lg col-start-6 col-span-2 max-h-[600px] max-w-xs md:max-w-xl w-full md:w-auto flex-shrink-0 mt-16 md:mt-8 bg-gradient-to-b from-[#B5FF92] to-[#A0FFB5] pt-16 lg:pt-36 px-8 flex flex-col"
         >
           <ExampleQuiz />
         </div>
